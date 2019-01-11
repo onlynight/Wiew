@@ -18,7 +18,7 @@ export default class Text extends Sprite {
         this.roundCornerRadius = 4
         this.textGravity = Gravity.CENTER
         this.textWidth = 0
-        this.textHeight = this.textSize
+        this.textHeight = this.textSize * 1.3
         this.textX = this.x
         this.textY = this.y
     }
@@ -26,7 +26,7 @@ export default class Text extends Sprite {
     measure(ctx, parentWidth, widthMode, parentHeight, heightMode) {
         ctx.font = this.__number2FontSize(this.textSize)
         this.textWidth = ctx.measureText(this.text).width
-        this.textHeight = this.textSize
+        this.textHeight = this.textSize * 1.3
 
         if (this.layoutParam.width == LayoutParam.WRAP_CONTENT) {
             this.width = this.textWidth
@@ -52,7 +52,7 @@ export default class Text extends Sprite {
     }
 
     draw(ctx) {
-		super.draw(ctx)
+        super.draw(ctx)
 
         ctx.fillStyle = this.textColor
         ctx.font = this.__number2FontSize(this.textSize)

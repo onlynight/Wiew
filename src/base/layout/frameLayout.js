@@ -100,7 +100,7 @@ export default class FrameLayout extends Group {
             }
 
             if (this.height == child.getTotalHeight()) {
-                y = child.marginTop
+                y = child.layoutParam.marginTop
             } else {
                 if (child.layoutParam.height == LayoutParam.MATCH_PARENT) {
                     y = child.layoutParam.marginTop
@@ -128,6 +128,7 @@ export default class FrameLayout extends Group {
 
         child.x = this.x + x
         child.y = this.y + y
+        // console.log(child.y)
     }
 
     draw(ctx) {

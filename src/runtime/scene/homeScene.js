@@ -19,7 +19,7 @@ export default class HomeScene extends Scene {
     constructor(x, y, width, height) {
         super(x, y, width, height)
 
-        this.demoWindow = new DemoWindow(width, 300)
+        this.demoWindow = new DemoWindow(LayoutParam.WRAP_CONTENT, 300)
         this.demoWindow.layoutParam.gravity = Gravity.CENTER
         this.addWindow(this.demoWindow)
 
@@ -124,6 +124,14 @@ export default class HomeScene extends Scene {
         this.titleFrame.addView(this.imgBtn)
 
         this.rootView.addView(this.titleFrame)
+
+        let tempFrame = new FrameLayout(LayoutParam.WRAP_CONTENT, LayoutParam.WRAP_CONTENT)
+        // tempFrame.layoutParam.marginLeft = 50
+        tempFrame.bgColor = '#ff0000'
+        tempFrame.layoutParam.gravity = Gravity.BOTTOM | Gravity.RIGHT
+        let tempText = new Text('temp text')
+        tempFrame.addView(tempText)
+        this.rootView.addView(tempFrame)
     }
 
 }
