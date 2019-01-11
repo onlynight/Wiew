@@ -5,7 +5,7 @@ Wiew
 
 ## 预览
 
-![preview](Wiew.gif)
+![preview](./readme_imsages/Wiew.gif)
 
 ## 布局
 
@@ -32,6 +32,9 @@ this.title.layoutParam.marginTop = 20
 this.contentView.addView(this.title)
 ```
 
+### 常用布局
+
+目前只实现了 ```FrameLayout``` 以及 ```LinearLayout``` 这两种布局，已经能够应付大多数状况。
 
 ## Touch 事件分发&处理
 
@@ -46,3 +49,36 @@ this.btnDismiss.setOnClickListener(function(){
 	console.log('button click')
 })
 ```
+
+自己处理点击事件：
+
+```javascript
+this.logo = new ImageView(50, 50, 'images/ic_logo.png')
+this.logo.layoutParam.gravity = Gravity.CENTER
+this.logo.layoutParam.marginBottom = 10
+this.logo.setOnTouchListener(function(touchEvent) {
+	switch (touchEvent.event) {
+		case TouchEvent.EVENT_START:
+			console.log('touch start')
+			break
+		case TouchEvent.EVENT_MOVE:
+			console.log('touch move')
+			break
+		case TouchEvent.EVENT_END:
+			console.log('touch end')
+			break
+		case TouchEvent.EVENT_CANCEL:
+			console.log('touch cancel')
+			break
+		default:
+			break
+	}
+	return true
+})
+```
+
+## 框架结构
+
+为了方便管理界面切换，这里使用了类似 android 中 Activity 的设计，这里我们将其命名为场景 Scene。Scene 即为每次呈现给用户的整个页面，我们需要切换其他页面显示时切换 Scene 即可。框架结构图如下：
+
+![window scene frame](./readme_imsages/scenes.png)

@@ -5,6 +5,7 @@ import Scene from '../../base/view/scene.js'
 import LayoutParam from '../../base/layout/layoutParam.js'
 import FrameLayout from '../../base/layout/frameLayout.js'
 import LinearLayout from '../../base/layout/linearLayout.js'
+import TouchEvent from '../../base/touch/touchEvent.js'
 
 import ImageView from '../../base/view/imageView.js'
 import Text from '../../base/view/text.js'
@@ -59,6 +60,25 @@ export default class HomeScene extends Scene {
         this.logo = new ImageView(50, 50, 'images/ic_logo.png')
         this.logo.layoutParam.gravity = Gravity.CENTER
         this.logo.layoutParam.marginBottom = 10
+        this.logo.setOnTouchListener(function(touchEvent) {
+            switch (touchEvent.event) {
+                case TouchEvent.EVENT_START:
+                    console.log('touch start')
+                    break
+                case TouchEvent.EVENT_MOVE:
+                    console.log('touch move')
+                    break
+                case TouchEvent.EVENT_END:
+                    console.log('touch end')
+                    break
+                case TouchEvent.EVENT_CANCEL:
+                    console.log('touch cancel')
+                    break
+                default:
+                    break
+            }
+            return true
+        })
 
         this.contentFrame = new LinearLayout(LayoutParam.WRAP_CONTENT, LayoutParam.WRAP_CONTENT)
         this.contentFrame.direction = LinearLayout.HORIZONTAL
@@ -81,7 +101,7 @@ export default class HomeScene extends Scene {
         this.btn.setOnClickListener(function(view, touchEvent) {
             console.log('btn click')
             console.log(touchEvent)
-			that.changeScene(Scene.getScene('demo'))
+            that.changeScene(Scene.getScene('demo'))
         })
 
         this.imgBtn = new ImageButton(LayoutParam.WRAP_CONTENT, LayoutParam.WRAP_CONTENT, 'images/bg_btn.png', 'Show pop window')
