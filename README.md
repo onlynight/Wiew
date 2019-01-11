@@ -3,6 +3,10 @@ Wiew
 
 简易微信小游戏view系统以及touch系统。你可以想写Android UI一样写界面布局，处理点击事件。
 
+## 预览
+
+![preview](Wiew.gif)
+
 ## 布局
 
 你可以像使用android布局一样使用Wiew的布局：
