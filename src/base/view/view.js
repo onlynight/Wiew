@@ -19,7 +19,7 @@ export default class View {
         this.touchListener = null
         this.parent = null
         this.disallowInterceptTouchEvent = false
-		this.onClickListener = null
+        this.onClickListener = null
     }
 
 
@@ -35,8 +35,13 @@ export default class View {
     }
 
     drawBg(ctx) {
+        ctx.beginPath()
+
+        ctx.fillStyle = 'rgba(0,0,0,0)'
         ctx.fillStyle = this.bgColor
         ctx.fillRect(this.x, this.y, this.width, this.height)
+
+        ctx.closePath()
     }
 
     getTotalWidth() {
@@ -48,7 +53,7 @@ export default class View {
     }
 
     // touch event functions
-	dispatchTouchEvent(touchEvent) {
+    dispatchTouchEvent(touchEvent) {
         let result = false
         if (this.touchListener != null) {
             result = this.touchListener(touchEvent)
@@ -66,15 +71,15 @@ export default class View {
      * return if return {true} it means this view consume the touch event, or not
      */
     touchEvent(touchEvent) {
-		let handled = false
-		if (this.onClickListener != null) {
-			handled = true
-			if (touchEvent.event == TouchEvent.EVENT_END) {
-				this.onClickListener(this, touchEvent)
-			}
-		}
+        let handled = false
+        if (this.onClickListener != null) {
+            handled = true
+            if (touchEvent.event == TouchEvent.EVENT_END) {
+                this.onClickListener(this, touchEvent)
+            }
+        }
 
-		return handled
+        return handled
     }
 
     /**
@@ -85,9 +90,9 @@ export default class View {
             y >= this.y && y <= this.y + this.height && this.visible)
     }
 
-	setOnClickListener(callback) {
-		this.onClickListener = callback
-	}
+    setOnClickListener(callback) {
+        this.onClickListener = callback
+    }
 
     /**
      * {@paramcallback is touch listener}
@@ -96,8 +101,8 @@ export default class View {
     setOnTouchListener(callback) {
         this.touchListener = callback
     }
-	
-	consumeTouchEvent(touchEvent) {
-		return false
-	}
+
+    consumeTouchEvent(touchEvent) {
+        return false
+    }
 }
