@@ -14,7 +14,7 @@ export default class View {
 
         this.layoutParam = new LayoutParam(width, height)
 
-        this.bgColor = null
+        this.bgColor = 'rgba(0,0,0,0)'
 
         this.touchListener = null
         this.parent = null
@@ -37,7 +37,6 @@ export default class View {
     drawBg(ctx) {
         ctx.beginPath()
 
-        ctx.fillStyle = 'rgba(0,0,0,0)'
         ctx.fillStyle = this.bgColor
         ctx.fillRect(this.x, this.y, this.width, this.height)
 
