@@ -18,9 +18,9 @@ export default class HomeScene extends Scene {
     constructor(x, y, width, height) {
         super(x, y, width, height)
 
-		this.demoWindow = new DemoWindow(width, 300)
-		this.demoWindow.layoutParam.gravity = Gravity.CENTER
-		this.addWindow(this.demoWindow)
+        this.demoWindow = new DemoWindow(width, 300)
+        this.demoWindow.layoutParam.gravity = Gravity.CENTER
+        this.addWindow(this.demoWindow)
 
         this.rootView = new FrameLayout(LayoutParam.MATCH_PARENT, LayoutParam.MATCH_PARENT)
         this.addView(this.rootView)
@@ -29,7 +29,7 @@ export default class HomeScene extends Scene {
     }
 
     initView() {
-		let that = this
+        let that = this
 
         this.bg = new ImageView(LayoutParam.MATCH_PARENT, LayoutParam.MATCH_PARENT, 'images/bg_white.png')
         this.rootView.addView(this.bg)
@@ -74,22 +74,23 @@ export default class HomeScene extends Scene {
         this.content3 = new Text('This is content 3.')
         this.content3.textColor = 'white'
 
-        this.btn = new Button(LayoutParam.WRAP_CONTENT, LayoutParam.WRAP_CONTENT, 'TEST button')
+        this.btn = new Button(LayoutParam.WRAP_CONTENT, LayoutParam.WRAP_CONTENT, 'Goto DemoScene')
         this.btn.layoutParam.gravity = Gravity.CENTER_X
         this.btn.textSize = 15
         this.btn.layoutParam.marginBottom = 10
-		this.btn.setOnClickListener(function (view, touchEvent) {
-			console.log('btn click')
+        this.btn.setOnClickListener(function(view, touchEvent) {
+            console.log('btn click')
             console.log(touchEvent)
+			that.changeScene(Scene.getScene('demo'))
         })
 
-		this.imgBtn = new ImageButton(LayoutParam.WRAP_CONTENT, LayoutParam.WRAP_CONTENT, 'images/bg_btn.png', 'Show pop window')
-		this.imgBtn.layoutParam.marginBottom = 10
-		this.imgBtn.layoutParam.marginLeft = 10
-		this.imgBtn.setOnClickListener(function (view, touchEvent) {
-			console.log('img btn click')
-			that.demoWindow.visible = true
-		})
+        this.imgBtn = new ImageButton(LayoutParam.WRAP_CONTENT, LayoutParam.WRAP_CONTENT, 'images/bg_btn.png', 'Show pop window')
+        this.imgBtn.layoutParam.marginBottom = 10
+        this.imgBtn.layoutParam.marginLeft = 10
+        this.imgBtn.setOnClickListener(function(view, touchEvent) {
+            console.log('img btn click')
+            that.demoWindow.visible = true
+        })
 
         this.contentFrame.addView(this.content1)
         this.contentFrame.addView(this.content2)
@@ -99,8 +100,8 @@ export default class HomeScene extends Scene {
         this.titleFrame.addView(this.subTitle)
         this.titleFrame.addView(this.contentFrame)
         this.titleFrame.addView(this.logo)
-		this.titleFrame.addView(this.btn)
-		this.titleFrame.addView(this.imgBtn)
+        this.titleFrame.addView(this.btn)
+        this.titleFrame.addView(this.imgBtn)
 
         this.rootView.addView(this.titleFrame)
     }

@@ -3,31 +3,53 @@
 
 import Group from '../layout/group.js'
 import FrameLayout from '../layout/frameLayout.js'
-import PhoneWindow from '../view/window/popupWindow.js'
+import PhoneWindow from '../view/phoneWindow.js'
 
 export default class Scene extends Group {
+
+    static SCENES = []
+
+    static registerScene(name, clazz) {
+        Scene.SCENES.push({
+            name: name,
+            clazz: clazz
+        })
+    }
+
+    static getScene(name) {
+        let temp = null
+
+        for (let i = 0; i < Scene.SCENES.length; i++) {
+            temp = Scene.SCENES[i]
+            if (temp.name == name) {
+                return temp.clazz
+            }
+        }
+
+        return null
+    }
 
     constructor(x, y, width, height) {
         super(x, y, width, height)
 
         this.contentView = new Group(x, y, width, height)
-		super.addView(this.contentView)
+        super.addView(this.contentView)
 
-		this.rootWindowView = new FrameLayout(width, height)
-		super.addView(this.rootWindowView)
+        this.rootWindowView = new FrameLayout(width, height)
+        super.addView(this.rootWindowView)
     }
 
-	addView(view){
-		this.contentView.addView(view)
-	}
+    addView(view) {
+        this.contentView.addView(view)
+    }
 
-	removeView(view) {
-		this.contentView.removeView(view)
-	}
+    removeView(view) {
+        this.contentView.removeView(view)
+    }
 
-	removeView(index) {
-		this.contentView.removeView(index)
-	}
+    removeView(index) {
+        this.contentView.removeView(index)
+    }
 
     addWindow(popupWindow) {
         popupWindow.x = this.x
@@ -54,8 +76,8 @@ export default class Scene extends Group {
         }
     }
 
-	changeScene(sceneClass){
-		PhoneWindow.getInstance(sceneClass)
-	}
+    changeScene(sceneClass) {
+        PhoneWindow.getInstance().changeScene(sceneClass)
+    }
 
 }
