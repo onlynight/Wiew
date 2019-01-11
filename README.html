@@ -1117,4 +1117,13 @@ body .markdown-body
 
 <h2 id="_4">框架结构<a class="headerlink" href="#_4" title="Permanent link"></a></h2>
 <p>为了方便管理界面切换，这里使用了类似 android 中 Activity 的设计，这里我们将其命名为场景 Scene。Scene 即为每次呈现给用户的整个页面，我们需要切换其他页面显示时切换 Scene 即可。框架结构图如下：</p>
-<p><img alt="window scene frame" src="///D://Code/Wechat/Games/release/Wiew/readme_images/scene.png" /></p></article></body></html>
+<p><img alt="window scene frame" src="///D://Code/Wechat/Games/release/Wiew/readme_images/scene.png" /></p>
+<h3 id="view">View 继承关系图<a class="headerlink" href="#view" title="Permanent link"></a></h3>
+<p><img alt="view_class_graph" src="///D://Code/Wechat/Games/release/Wiew/readme_images/view_class_graph.png" /></p>
+<h3 id="view_1">View 结构图<a class="headerlink" href="#view_1" title="Permanent link"></a></h3>
+<p><img alt="view_structure_graph" src="///D://Code/Wechat/Games/release/Wiew/readme_images/view_structure_graph.png" /></p>
+<h3 id="scene">Scene 结构图<a class="headerlink" href="#scene" title="Permanent link"></a></h3>
+<p><img alt="scene_structure" src="///D://Code/Wechat/Games/release/Wiew/readme_images/scene_structure.png" /></p>
+<p><code>Scene</code> 继承自 <code>Group</code> 其中包含两个 <code>view</code>，一个是用于添加显示 <code>View</code> 的 <code>rootView</code>，另一个是用于添加 <code>PopupWindow</code> 的 <code>rootWindowView</code> 。</p>
+<h3 id="popupwindow">PopupWindow 继承关系图<a class="headerlink" href="#popupwindow" title="Permanent link"></a></h3>
+<p><img alt="popwindow_class" src="///D://Code/Wechat/Games/release/Wiew/readme_images/popwindow_class.png" /></p></article></body></html>

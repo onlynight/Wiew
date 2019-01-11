@@ -83,10 +83,20 @@ this.logo.setOnTouchListener(function(touchEvent) {
 
 ![window scene frame](./readme_images/scene.png)
 
-### View 类图
+### View 继承关系图
 
 ![view_class_graph](./readme_images/view_class_graph.png)
 
 ### View 结构图
 
 ![view_structure_graph](./readme_images/view_structure_graph.png)
+
+### Scene 结构图
+
+![scene_structure](./readme_images/scene_structure.png)
+
+```Scene``` 继承自 ```Group``` 其中包含两个 ```view```，一个是用于添加显示 ```View``` 的 ```rootView```，另一个是用于添加 ```PopupWindow``` 的 ```rootWindowView``` 。
+
+### PopupWindow 继承关系图
+
+![popwindow_class](./readme_images/popwindow_class.png)
