@@ -5,7 +5,7 @@ Wiew
 
 ## 预览
 
-![preview](./readme_imsages/Wiew.gif)
+![preview](./readme_images/Wiew.gif)
 
 ## 布局
 
@@ -81,4 +81,12 @@ this.logo.setOnTouchListener(function(touchEvent) {
 
 为了方便管理界面切换，这里使用了类似 android 中 Activity 的设计，这里我们将其命名为场景 Scene。Scene 即为每次呈现给用户的整个页面，我们需要切换其他页面显示时切换 Scene 即可。框架结构图如下：
 
-![window scene frame](./readme_imsages/scenes.png)
+![window scene frame](./readme_images/scene.png)
+
+### View 类图
+
+![view_class_graph](./readme_images/view_class_graph.png)
+
+### View 结构图
+
+![view_structure_graph](./readme_images/view_structure_graph.png)
