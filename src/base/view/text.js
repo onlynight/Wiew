@@ -24,6 +24,8 @@ export default class Text extends Sprite {
     }
 
     measure(ctx, parentWidth, widthMode, parentHeight, heightMode) {
+        super.measure(ctx, parentWidth, widthMode, parentHeight, heightMode)
+
         ctx.font = this.__number2FontSize(this.textSize)
         this.textWidth = ctx.measureText(this.text).width
         this.textHeight = this.textSize * 1.3
@@ -49,14 +51,16 @@ export default class Text extends Sprite {
                 this.textY = this.y + (this.height - this.textHeight) / 2
             }
         }
+
+        super.layout()
     }
 
     draw(ctx) {
-        super.draw(ctx)
+		super.draw(ctx)
 
-        ctx.fillStyle = this.textColor
-        ctx.font = this.__number2FontSize(this.textSize)
-        ctx.fillText(this.text, this.textX, this.textY + this.textSize)
+		ctx.fillStyle = this.textColor
+		ctx.font = this.__number2FontSize(this.textSize)
+		ctx.fillText(this.text, this.textX, this.textY + this.textSize)
     }
 
     __number2FontSize(number) {

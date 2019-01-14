@@ -28,6 +28,7 @@ export default class Group extends View {
     constructor(x, y, width, height) {
         super(x, y, width, height)
 
+        this.clickable = false
         this.bgColor = 'rgba(0,0,0,0)'
         this.views = []
         this.catchedTouchEventChild = null
@@ -38,10 +39,13 @@ export default class Group extends View {
     }
 
     measure(ctx, parentWidth, widthMode, parentHeight, heightMode) {
+		super.measure(ctx, parentWidth, widthMode, parentHeight, heightMode)
+
         this.measureChildren(ctx, this.views, parentWidth, widthMode, parentHeight, heightMode)
     }
 
-    layout() {
+	layout() {
+		super.layout()
         this.layoutChildren(this.views)
     }
 
@@ -60,7 +64,6 @@ export default class Group extends View {
         if (children != null && Array.isArray(children)) {
             for (let i = 0; i < children.length; i++) {
                 this.layoutChild(children[i])
-                // children[i].layout()
             }
         }
     }
@@ -81,7 +84,7 @@ export default class Group extends View {
 
     drawChild(ctx, child) {
         if (child != null && child instanceof View && child.visible) {
-            child.draw(ctx)
+			child.draw(ctx)
         }
     }
 
@@ -162,8 +165,6 @@ export default class Group extends View {
                     if (child.isInArea(touchEvent.pointers[0].x, touchEvent.pointers[0].y)) {
                         handled = child.dispatchTouchEvent(touchEvent)
                         this.catchedTouchEventChild = child
-                        // console.log(child)
-                        // console.log(i)
 
                         if (child.consumeTouchEvent(touchEvent)) {
                             handled = true
@@ -196,6 +197,13 @@ export default class Group extends View {
 
     interceptTouchEvent(touchEvent) {
         return false
+    }
+
+    setSelect(selected) {
+        super.setSelect(selected)
+        for (let i = 0; i < this.views.length; i++) {
+            this.views[i].setSelect(selected)
+        }
     }
 
 }

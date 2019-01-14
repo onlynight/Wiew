@@ -16,7 +16,9 @@ export default class ImageView extends Sprite {
         })
     }
 
-    measure(ctx, parentWidth, widthMode, parentHeight, heightMode) {
+	measure(ctx, parentWidth, widthMode, parentHeight, heightMode) {
+		super.measure(ctx, parentWidth, widthMode, parentHeight, heightMode)
+		
         let maxWdith = -1
         let maxHeight = -1
 

@@ -12,7 +12,8 @@ export default class FrameLayout extends Group {
         this.matchParentChildren = []
     }
 
-    measure(ctx, parentWidth, widthMode, parentHeight, heightMode) {
+	measure(ctx, parentWidth, widthMode, parentHeight, heightMode) {
+		super.measure(ctx, parentWidth, widthMode, parentHeight, heightMode)
 
         let tempWidthMode = widthMode
         let tempHeightMode = heightMode
@@ -46,7 +47,7 @@ export default class FrameLayout extends Group {
         for (let i = 0; i < this.views.length; i++) {
             child = this.views[i]
             if (child.visible) {
-                this.measureChild(ctx, child, parentWidth, widthMode, parentHeight, heightMode)
+                child.measure(ctx, parentWidth, widthMode, parentHeight, heightMode)
 
                 maxWidth = Math.max(maxWidth, child.width + child.layoutParam.marginLeft + child.layoutParam.marginRight)
                 maxHeight = Math.max(maxHeight, child.height + child.layoutParam.marginTop + child.layoutParam.marginBottom)
@@ -80,9 +81,6 @@ export default class FrameLayout extends Group {
     }
 
     layoutChild(child) {
-        if (!child.visible) {
-            return
-        }
         super.layoutChild(child)
 
         let x = 0
@@ -128,20 +126,6 @@ export default class FrameLayout extends Group {
 
         child.x = this.x + x
         child.y = this.y + y
-        // console.log(child.y)
-    }
-
-    draw(ctx) {
-        if (!this.visible) {
-            return
-        }
-        super.draw(ctx)
-
-        if (this.views != null && this.views.length > 0) {
-            for (let i = 0; i < this.views.length; i++) {
-                this.views[i].draw(ctx)
-            }
-        }
     }
 
 }

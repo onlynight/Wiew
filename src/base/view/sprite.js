@@ -14,10 +14,12 @@ export default class Sprite extends View {
 
         this.settings = Object.assign(defaultSettings, otherSettings)
         this.img = null
+        this.imgSrc = null
 
         if (this.settings.hasImg) {
             this.img = new Image()
             this.img.src = this.settings.imgSrc
+            this.imgSrc = this.settings.imgSrc
         }
 
     }
@@ -51,9 +53,9 @@ export default class Sprite extends View {
         // let targetY = target.y + target.height / 2
 
         // return (targetX >= this.x &&
-        //   targetX <= this.x + this.width &&
-        //   targetY >= this.y &&
-        //   targetY <= this.y + this.height)
+        //     targetX <= this.x + this.width &&
+        //     targetY >= this.y &&
+        //     targetY <= this.y + this.height)
 
         let centerX = this.x + this.width / 2
         let centerY = this.y + this.height / 2

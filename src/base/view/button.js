@@ -20,19 +20,24 @@ export default class Button extends Text {
         this.textColor = 'white'
         this.textSize = 15
         this.hasBtnBG = true
+        this.clickable = true
     }
 
     touchEvent(touchEvent) {
-        switch (touchEvent.event) {
-            case TouchEvent.EVENT_START:
-                this.btnColor = this.bgPressColor
-                break
-            case TouchEvent.EVENT_END:
-                this.btnColor = this.bgNormalColor
-                break
-            default:
-                this.btnColor = this.bgNormalColor
-                break
+        if (this.clickable) {
+            switch (touchEvent.event) {
+                case TouchEvent.EVENT_START:
+                    this.btnColor = this.bgPressColor
+                    break
+                case TouchEvent.EVENT_END:
+                    this.btnColor = this.bgNormalColor
+                    break
+                default:
+                    this.btnColor = this.bgNormalColor
+                    break
+            }
+        } else {
+            this.btnColor = this.disableBgColor
         }
 
         return super.touchEvent(touchEvent)
@@ -60,9 +65,21 @@ export default class Button extends Text {
         } else {
             this.height = this.layoutParam.height
         }
+
+        if (this.width == this.textWidth) {
+            this.width += 10
+        }
+
+        if (this.height == this.heightWidth) {
+            this.height += 10
+        }
     }
 
     draw(ctx) {
+        if (this.enableSelect) {
+            this.btnColor = this.selected ? this.selectedColor : this.bgNormalColor
+        }
+
         if (this.hasBtnBG) {
             ctx.beginPath()
             ctx.strokeStyle = this.btnColor
@@ -85,4 +102,10 @@ export default class Button extends Text {
         }
         super.draw(ctx)
     }
+
+    setClickable(clickable) {
+        super.setClickable(clickable)
+        this.btnColor = this.disableBgColor
+    }
+
 }

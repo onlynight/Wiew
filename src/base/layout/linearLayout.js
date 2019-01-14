@@ -55,7 +55,7 @@ export default class LinearLayout extends Group {
         for (let i = 0; i < this.views.length; i++) {
             child = this.views[i]
             if (child.visible) {
-                this.measureChild(ctx, child, parentWidth, widthMode, parentHeight, heightMode)
+                this.measureChild(ctx, child, parentWidth - width - child.layoutParam.marginLeft, widthMode, parentHeight, heightMode)
                 maxHeight = Math.max(maxHeight, child.height + child.layoutParam.marginTop + child.layoutParam.marginBottom)
                 width += child.width + child.layoutParam.marginLeft + child.layoutParam.marginRight
             }
@@ -71,6 +71,8 @@ export default class LinearLayout extends Group {
     }
 
     measureVertical(ctx, parentWidth, widthMode, parentHeight, heightMode) {
+        super.measure(ctx, parentWidth, widthMode, parentHeight, heightMode)
+
         let maxWidth = 0
         let height = 0
         let child = null
@@ -81,7 +83,7 @@ export default class LinearLayout extends Group {
         for (let i = 0; i < this.views.length; i++) {
             child = this.views[i]
             if (child.visible) {
-                this.measureChild(ctx, child, parentWidth, widthMode, parentHeight, heightMode)
+                this.measureChild(ctx, child, parentWidth, widthMode, parentHeight - height - child.layoutParam.marginTop, heightMode)
                 maxWidth = Math.max(maxWidth, child.width + child.layoutParam.marginLeft + child.layoutParam.marginRight)
                 height += child.height + child.layoutParam.marginTop + child.layoutParam.marginBottom
             }
@@ -114,6 +116,7 @@ export default class LinearLayout extends Group {
         } else {
             this.layoutVertical()
         }
+        this.layoutFinish = true
     }
 
     layoutVertical() {
@@ -168,6 +171,7 @@ export default class LinearLayout extends Group {
             child = this.views[i]
 
             if (child.visible) {
+                child.layout()
                 if (child.layoutParam.gravity == Gravity.CENTER) {
                     y = (this.height - child.height) / 2 + child.layoutParam.marginTop - child.layoutParam.marginBottom
                 } else {
@@ -199,5 +203,12 @@ export default class LinearLayout extends Group {
             }
         }
     }
+
+	draw(ctx){
+		super.draw(ctx)
+		// if (this.tag == 'speedLayout') {
+		// 	console.log(this)
+		// }
+	}
 
 }
